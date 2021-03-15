@@ -10,20 +10,20 @@ def popkontv(pop_bj, name):
   first = 0
   while True:
     Channel = requests.get(f'https://www.popkontv.com/ch/default.asp?mcid={pop_bj}&mcPartnerCode=P-00001')
+    time.sleep(10)
     html = BeautifulSoup(Channel.text, 'html.parser')
     status = html.find("span", {"class" : "ic ic_on"})
     first, check, status = pop_Brodcast(check, status, name, first)
-    time.sleep(10)
 
 def pandatv(panda_bj, name, id):
   check = None
   first = 0
   while True:
     Channel = requests.get(f'https://www.pandalive.co.kr/channel/{panda_bj}/notice')
+    time.sleep(10)
     html = BeautifulSoup(Channel.text, 'html.parser')
     status = html.find("a", {"class" : "v_box"}).find("span", {"class" : "txt_c"}).string
     first, check, status = panda_Brodcast(check, status, name, first)
-    time.sleep(10)
 
 def pop_Brodcast(check, status, name, first):
   # 방송 ON/OFF 비교
